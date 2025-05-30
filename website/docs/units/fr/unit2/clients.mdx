@@ -1,0 +1,61 @@
+import Youtube from "@site/src/components/Youtube"
+import Astuce from "@site/src/components/Astuce"
+import Style from "@site/src/components/Style"
+
+<code>&lt;think&gt;</code>
+Okay, let's tackle this translation. First, I need to make sure I follow all the instructions carefully. The main goal is to translate the text into French while keeping the original formatting, which includes Markdown, HTML, and code blocks. 
+
+Starting with the headers. The main title is "Building MCP Clients". Since MCP is a term we shouldn't translate, it stays as is. The French translation would be "Création de clients MCP". The section headers like "Configuring MCP Clients" become "Configuration des clients MCP". 
+
+Next, looking at the terms that have predefined translations. For example, "Quick Quiz" becomes "Flash test", but in this text, there aren't any of those. The terms like "Model" should be "Modèle", but again, not present here. The important thing is to check each term against the list provided.
+
+Now, the code blocks. The instructions say to translate comments inside code blocks but leave the code as-is. However, in the provided examples, the JSON code doesn't have comments, so I just need to ensure that the structure remains the same. The example given in the problem shows that if there are plain texts in the code block, we should provide a translation in a <code>&lt;details&gt;</code> tag. But in this case, the JSON is just configuration data without comments or plain text, so the code blocks stay unchanged.
+
+The <code>&lt;Tip&gt;</code> section needs to be translated. The content inside the HTML tag should be in French. For instance, "We've connected to the Gradio app via SSE transport..." becomes "Nous nous sommes connectés à l'application Gradio via le transport SSE...". The word "Gradio" is a brand name and shouldn't be translated.
+
+Checking for any slang or jokes. The text here is technical, so there's no slang, but I need to ensure that any technical jargon like "SSE transport" remains in English. The term "stdio" is also kept as-is because it's a technical term.
+
+Abbreviations: MCP is kept as is, and the first occurrence should have the translation in parentheses. However, in the original text, MCP is already introduced, so maybe the first mention in the translated text should include the French translation. Wait, the instructions say that if the term is abbreviated, keep the original term and provide the translation in parentheses the first time it appears. But in the given example, MCP is used without translation. Looking back at the user's instructions, the terms to keep are listed, including MCP, so it shouldn't be translated. So "MCP" remains as is throughout.
+
+The predefined translations for terms like "Server" should be "Serveur", but in the list, "Server" is one of the terms to keep. Wait, checking the list: "KEEP THESE TERMS (DO NOT TRANSLATE, do NOT add translation in parentheses): MCP, API, SDK, CLI, HTML, GGUF, AI, Client, Server, Hugging Face, Space, CodeAgent, LangGraph, LangChain, Llama, Gemma, inference, notebook, python, transformers, token, pretrain, format, certificate." So "Server" is in the list, so it should not be translated. Therefore, in the text, "Serveurs" in the original translation example was a mistake? Wait, in the example provided by the user, the original text says "Clients and Servers" and the translation is "Client et Serveurs". But according to the instructions, "Server" should be kept as is. Hmm, this is conflicting. Wait, the user's example shows that "Clients and Servers" is translated to "Client et Serveurs", but according to the instructions, "Client" and "Server" are in the list of terms to keep. So that example might have an error. But the user's instruction says to follow the example, so perhaps in the example, "Client" and "Server" are translated, but according to the term list, they shouldn't be. This is confusing. 
+
+Wait, looking back at the user's instructions: 
+
+"For these terms, use the pre-defined translation:
+- Quick Quiz: Flash test
+- Unit: Chapitre
+- Bonus Unit: Chapitre bonus
+- Module: module
+- Lesson ...: Leçon ...
+- Model: Modèle
+- Dataset: base de données
+- Course: Cours
+- state-of-the-art: État de l'art
+- Q&A: FAQ
+- Dummy: Idiot (ou faux selon le contexte)
+- onboarding: accueil
+- Hands-on: pratique
+- Challenge: Défi
+- Training: Entrainement
+- Model Context Protocol: protocole de gestion de contexte"
+
+So "Server" is not in the pre-defined translations. However, in the list of terms to keep, "Server" is included. Therefore, "Server" should not be translated. So in the example provided by the user, the translation of "Servers" to "Serveurs" is incorrect according to the instructions. But the user provided that example, so perhaps there's an exception. Wait, the example given by the user is:
+
+Original: "JSON-RPC defines the message format, but MCP also specifies how these messages are transported between Clients and Servers."
+Translation: "JSON-RPC définie le format du message, mais MCP spécifie également comment ces messages sont transporté entre Client et Serveurs."
+
+But according to the term list, "Client" and "Server" should be kept as is. So the correct translation should have "Clients" and "Servers" not translated. But the example translates them. This is conflicting. The user might have made a mistake in the example, but as a translator, I need to follow the instructions as given. 
+
+The instructions say: "KEEP THESE TERMS (DO NOT TRANSLATE, do NOT add translation in parentheses): MCP, API, SDK, CLI, HTML, GGUF, AI, Client, Server, Hugging Face, Space, CodeAgent, LangGraph, LangChain, Llama, Gemma, inference, notebook, python, transformers, token, pretrain, format, certificate."
+
+Therefore, "Client" and "Server" should remain in English. So in the example, the translation should have "Clients" and "Servers" not translated. But the user's example shows them translated. This is a problem. However, the user's instruction says to follow the example, so perhaps in that specific case, the terms were translated, but according to the term list, they shouldn't be. This is a contradiction. 
+
+Given that the user provided the example, perhaps in their instructions, "Client" and "Server" are to be translated, but in the term list, they are to be kept. This is confusing. To resolve this, I need to prioritize the term list over the example. Since "Client" and "Server" are in the list of terms to keep, they should not be translated. Therefore, in the current text, any occurrence of "client" or "server" in the technical sense should remain in English. 
+
+Looking back at the text to translate: 
+
+"In this section, we'll create clients that can interact with our MCP server using different programming languages."
+
+Here, "clients" and "server" are technical terms. According to the term list, "Client" and "Server" should be kept as is. Therefore, the translation should be "clients" and "server" in French. Wait, but in French, the plural of "client" is "clients", same spelling. So "clients" remains "clients", and "server" remains "server". But in French, "server" is "serveur". However, according to the instructions, we must keep "Server" as is. So the correct translation would be "clients" and "server" in French. 
+
+Wait, but the term list says "Client" and "Server" are to be kept. So in the French text, they should appear as "Client" and "Server" with capital letters? Or as per the original? For example, in the original text, "clients" is lowercase. The term list says to keep the terms as per the list, which includes "Client" and "Server". So perhaps only when the term is used as a proper noun or specific technical term, it's kept. For example, in "MCP Clients", "Clients" is part of the title and refers to the technical term, so it remains "Clients". But in the sentence "create clients that can interact...", "clients" is a regular noun and should be

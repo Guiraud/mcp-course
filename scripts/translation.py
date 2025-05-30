@@ -12,7 +12,7 @@ if not hf_token:
 
 # Get the directory containing the current script
 script_dir = os.path.dirname(os.path.abspath(__file__))
-default_inp_dir = os.path.join(script_dir, '..', 'units/en')
+default_inp_dir = os.path.join(script_dir, '..', 'website/docs/units/en')
 default_model = "deepseek-ai/DeepSeek-R1"
 default_client = InferenceClient(
     provider="together",
@@ -32,7 +32,7 @@ def auto_translate(
 
     # Get the list of all files in the directory, recursively
     inp_files: list[str] = []
-    print('Collecting files...')
+    print(f'Collecting files... in {inp_dir}')
     for root, dirs, files in os.walk(inp_dir):
         for file in files:
             if file.endswith('.mdx') or file == "_toctree.yml":

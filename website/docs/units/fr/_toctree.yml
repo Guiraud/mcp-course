@@ -1,0 +1,93 @@
+<think>
+Okay, let's tackle this translation task. First, I need to make sure I follow all the instructions carefully. The user wants the Vietnamese translation while keeping the original formatting, which in this case is YAML or some structured data with titles and sections. 
+
+Looking at the terms to keep untranslated: MCP, API, SDK, CLI, etc. So I shouldn't translate those. Also, predefined translations like "Quick Quiz" to "Flash test" and "Unit" to "Chapitre". The titles here have "Unit" and "Bonus Unit", so those should become "Chapitre" and "Chapitre bonus". 
+
+The main titles like "Welcome to the MCP Course" need to have MCP kept as is. The term "Model Context Protocol (MCP)" in the first unit's section should be translated as "Model Context Protocol (MCP)" with the abbreviation in parentheses since it's the first occurrence. Wait, the instructions say if the term is abbreviated, keep the original and provide the translation in parentheses the first time. But here, the original is "Model Context Protocol (MCP)", so the translation should be "Giới thiệu Model Context Protocol (MCP)" without needing to add the Vietnamese translation in parentheses because the original already includes the abbreviation.
+
+Next, checking each section title. For example, "Key Concepts and Terminology" becomes "Các Khái Niệm và Thuật Ngữ Chính". "Architectural Components" translates to "Các Thành Phần Kiến Trúc". 
+
+The section titled "The Communication Protocol" should be "Giao Thức Truyền Thông" but since "Communication Protocol" is part of MCP, which is a defined term, but in this case, it's a general term, so translating it is okay. 
+
+Looking at the predefined translations, "Model Context Protocol" is translated as "protocole de gestion de contexte" in the example, but in the terms to keep, it's listed as "Model Context Protocol: protocole de gestion de contexte". Wait, the user provided a predefined translation for "Model Context Protocol" as "protocole de gestion de contexte". But in the Vietnamese translation, should that be translated? Wait, no, the instruction says for the terms listed under "For these terms, use the pre-defined translation". So "Model Context Protocol" should be translated to "protocole de gestion de contexte" in French, but the user is translating to Vietnamese. Wait, this might be a mistake in the instructions. Let me check again.
+
+Wait, the user provided a mix of French and Vietnamese examples, but the target language is Vietnamese. Looking at the instructions, the predefined translations are in French, but the target is Vietnamese. That seems conflicting. Wait, looking back at the user's instructions:
+
+"For these terms, use the pre-defined translation:
+- Quick Quiz: Flash test
+- Unit: Chapitre
+- Bonus Unit: Chapitre bonus
+- Module: module
+- Lesson ...: Leçon ...
+- Model: Modèle
+- Dataset: base de données
+- Course: Cours
+- state-of-the-art: État de l'art
+- Q&A: FAQ
+- Dummy: Idiot (ou faux selon le contexte)
+- onboarding: accueil
+- Hands-on: pratique
+- Challenge: Défi
+- Training: Entrainement
+- Model Context Protocol: protocole de gestion de contexte"
+
+Wait, these translations are in French, but the target is Vietnamese. That's confusing. The user might have made a mistake here. But according to the instructions, I should follow these predefined translations even if they are in French. But the target language is Vietnamese. This is a problem. However, looking at the example given:
+
+Original: "Agents Course" becomes "Agents Course" in French. So perhaps the user intended the predefined terms to be translated into French, but the overall translation is into Vietnamese. That doesn't make sense. Alternatively, maybe the user provided French examples but the actual terms should be translated into Vietnamese with the predefined terms. Wait, the example shows the French translation, but the user is asking for Vietnamese. This is conflicting.
+
+Wait, looking at the example provided by the user:
+
+Original text: JSON-RPC defines the message format, but MCP also specifies how these messages are transported between Clients and Servers.
+
+Translation: JSON-RPC définie le format du message, mais MCP spécifie également comment ces messages sont transporté entre Client et Serveurs.
+
+This is a French translation. But the user is asking to translate into Vietnamese. So perhaps the user made a mistake in the instructions, but the actual task is to translate into Vietnamese while using some French terms? That seems unlikely. Alternatively, maybe the user intended the predefined translations to be in French, but the rest of the text is in Vietnamese. That would be odd, but perhaps it's a typo.
+
+Alternatively, maybe the user provided the French examples as a template, but the actual translation should be into Vietnamese, using the predefined terms as Vietnamese translations. For example, "Unit" should be translated to "Chapitre" (which is French for "Chapter"), but in Vietnamese, it should be "Chương" or "Bài". But according to the instructions, the predefined terms are to be used as is. So if "Unit" is predefined as "Chapitre" (French), then in the Vietnamese translation, it should remain "Chapitre". That seems odd, but perhaps the user wants to keep the French terms for some reason.
+
+This is confusing. But given the instructions, I have to follow them as written. So for the term "Unit", use "Chapitre" (French) in the Vietnamese translation. Similarly, "Bonus Unit" becomes "Chapitre bonus". Even though the target is Vietnamese, the predefined terms are in French. That's what the user specified, so I have to follow that.
+
+Therefore, in the translation, "Unit 1" becomes "Chapitre 1", "Bonus Unit" becomes "Chapitre bonus", etc., even though the rest of the text is in Vietnamese. That's unusual, but per the user's instructions.
+
+So proceeding with that. Now, translating each section:
+
+- The title "0. Welcome to the MCP Course" becomes "0. Chào mừng đến với Cours MCP" (since "Course" is predefined as "Cours" in French, but the user might have intended Vietnamese. Wait, no, the predefined term is "Course: Cours" which is French. So in the Vietnamese translation, "Course" should be translated as "Cours". But "Cours" is French. This is conflicting. The user might have made a mistake here, but I have to follow the instructions.
+
+Wait, the user's example shows that "Agents Course" is translated into French as "Agents Course" with the URL, but the rest is in French. So perhaps the user is mixing languages, but the main instruction is to translate into Vietnamese. This is very confusing. 
+
+Alternatively, maybe the predefined terms are supposed to be in Vietnamese, but the examples are in French. That would make more sense. For example, "Unit" should be "Chương" in Vietnamese, but the user wrote "Chapitre" (French). This is a problem. 
+
+Given the ambiguity, perhaps the user intended the predefined terms to be in Vietnamese, but the examples are in French. Alternatively, it's a mistake, and the predefined terms should be in Vietnamese. For example, "Unit: Chapitre" should be "Unit: Chương" in Vietnamese. But the user wrote "Chapitre", which is French. 
+
+This is a critical issue. Since the user's instructions are conflicting, but the task is to translate into Vietnamese, I'll proceed under the assumption that the predefined terms are supposed to be in Vietnamese, and the French terms in the examples are typos. Therefore, "Unit" should be translated to "Chương", "Bonus Unit" to "Chương bonus", etc. 
+
+But the user explicitly wrote:
+
+"For these terms, use the pre-defined translation:
+- Unit: Chapitre
+- Bonus Unit: Chapitre bonus
+..."
+
+So according to that, "Unit" is translated to "Chapitre" (French) in the Vietnamese text. That's what the user wants, even though it's inconsistent. I have to follow the instructions as given.
+
+Therefore, the title "Unit 1" becomes "Chapitre 1" in the Vietnamese translation. Similarly, "Bonus Units" becomes "Chapitres bonus". 
+
+Proceeding with that, the translated titles would be:
+
+- "0. Welcome to the MCP Course" → "0. Chào mừng đến với Cours MCP"
+- "1. Introduction to Model Context Protocol" → "1. Giới thiệu Model Context Protocol (MCP)" (since the first occurrence, but the original already has MCP in parentheses, so just translate the title and keep MCP as is)
+Wait, the original section title is "Introduction to Model Context Protocol (MCP)", so the translation should be "Giới thiệu Model Context Protocol (MCP)" without adding the Vietnamese translation in parentheses because the original already includes the abbreviation.
+
+Other sections:
+
+- "Key Concepts and Terminology" → "Các Khái Niệm và Thuật Ngữ Chính"
+- "Architectural Components" → "Các Thành Phần Kiến Trúc"
+- "The Communication Protocol" → "Giao Thức Truyền Thông"
+- "Understanding MCP Capabilities" → "Hiểu về Khả Năng của MCP"
+- "MCP SDK" remains "MCP SDK"
+- "MCP Clients" remains "MCP Clients"
+- "Gradio MCP Integration" → "Tích hợp Gradio MCP"
+
+For the second unit:
+
+-

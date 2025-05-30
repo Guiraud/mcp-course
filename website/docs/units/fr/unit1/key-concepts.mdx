@@ -1,0 +1,72 @@
+import Youtube from "@site/src/components/Youtube"
+import Astuce from "@site/src/components/Astuce"
+import Style from "@site/src/components/Style"
+
+# Concepts clés et terminologie
+
+Avant de plonger plus profondément dans le protocole de gestion de contexte (MCP), il est important de comprendre les concepts clés et la terminologie qui forment sa base. Cette section présentera les idées fondamentales sous-jacentes au protocole et fournira un vocabulaire commun pour discuter des implémentations MCP tout au long du cours.
+
+MCP est souvent décrit comme le "USB-C pour les applications d'IA". Tout comme USB-C fournit une interface physique et logique standardisée pour connecter divers périphériques à des appareils informatiques, MCP offre un protocole cohérent pour relier les Modèles d'IA à des capacités externes. Cette standardisation bénéficie à tout l'écosystème :
+
+- **Les utilisateurs** profitent d'expériences plus simples et plus cohérentes à travers les applications d'IA
+- **Les développeurs d'applications d'IA** obtiennent une intégration facile avec un écosystème croissant d'outils et de sources de données
+- **Les fournisseurs d'outils et de données** n'ont besoin de créer qu'une seule implémentation compatible avec de multiples applications d'IA
+- L'écosystème global bénéficie d'une meilleure interopérabilité, d'innovation accrue et d'une fragmentation réduite
+
+## Le problème d'intégration
+
+Le **problème d'intégration M×N** fait référence au défi de connecter M applications d'IA différentes à N outils externes ou sources de données sans approche standardisée.
+
+### Sans MCP (Problème M×N)
+
+Sans un protocole comme MCP, les développeurs devraient créer M×N intégrations personnalisées - une pour chaque combinaison possible entre une application d'IA et une capacité externe.
+
+![Without MCP](https://huggingface.co/datasets/mcp-course/images/resolve/main/unit1/1.png)
+
+Chaque application d'IA devrait s'intégrer individuellement avec chaque outil/source de données. Ce processus complexe et coûteux crée beaucoup de friction pour les développeurs et des coûts de maintenance élevés.
+
+Une fois que nous avons plusieurs Modèles et plusieurs outils, le nombre d'intégrations devient ingérable, chacune avec sa propre interface unique.
+
+![Multiple Models and Tools](https://huggingface.co/datasets/mcp-course/images/resolve/main/unit1/1a.png)
+
+### Avec MCP (Solution M+N)
+
+MCP transforme cela en un problème M+N en fournissant une interface standard : chaque application d'IA implémente le côté Client de MCP une fois, et chaque outil/source de données implémente le côté Serveur une fois. Cela réduit considérablement la complexité d'intégration et la charge de maintenance.
+
+![With MCP](https://huggingface.co/datasets/mcp-course/images/resolve/main/unit1/2.png)
+
+Chaque application d'IA implémente le côté Client de MCP une fois, et chaque outil/source de données implémente le côté Serveur une fois.
+
+## Terminologie de base de MCP
+
+Maintenant que nous comprenons le problème résolu par MCP, explorons la terminologie et les concepts clés qui composent le protocole MCP.
+
+:::tip
+
+MCP est un standard comme HTTP ou USB-C, et constitue un protocole pour connecter des applications d'IA à des outils externes et sources de données. L'utilisation d'une terminologie standard est donc cruciale pour le bon fonctionnement de MCP.
+
+Lors de la documentation de nos applications et de la communication avec la communauté, nous devons utiliser la terminologie suivante.
+
+:::
+
+### Composants
+
+Comme les relations client-serveur en HTTP, MCP a un client et un serveur.
+
+![MCP Components](https://huggingface.co/datasets/mcp-course/images/resolve/main/unit1/3.png)
+
+- **Host** : L'application d'IA orientée utilisateur avec laquelle les utilisateurs finaux interagissent directement. Exemples : Claude Desktop d'Anthropic, des IDE améliorés par l'IA comme Cursor, des bibliothèques d'inférence comme le SDK Python de Hugging Face, ou des applications personnalisées construites avec des bibliothèques comme LangChain ou smolagents. Les Host initient les connexions aux Serveurs MCP et orchestrent le flux global entre les requêtes utilisateur, le traitement par LLM et les outils externes.
+
+- **Client** : Composant au sein de l'application Host qui gère la communication avec un Serveur MCP spécifique. Chaque Client maintient une connexion 1:1 avec un seul Serveur, gérant les détails protocolaires de la communication MCP et servant d'intermédiaire entre la logique du Host et le Serveur externe.
+
+- **Server** : Programme ou service externe qui expose des capacités (Outils, Ressources, Prompts) via le protocole MCP.
+
+:::warning
+
+Beaucoup de contenu utilise "Client" et "Host" de manière interchangeable. Techniquement, le Host est l'application orientée utilisateur, et le Client est le composant au sein du Host qui gère la communication avec un Serveur MCP spécifique.
+
+:::
+
+### Capacités
+
+Bien sûr, la valeur de votre application réside dans la

@@ -1,0 +1,134 @@
+import Youtube from "@site/src/components/Youtube"
+import Astuce from "@site/src/components/Astuce"
+import Style from "@site/src/components/Style"
+
+<code>&lt;think&gt;</code>
+Okay, let's tackle this translation. First, I need to make sure I follow all the instructions carefully. The main goal is to translate the text into French while keeping the original formatting, which includes Markdown, HTML, and code blocks. 
+
+Starting with the title: "# Gradio MCP Integration" becomes "# Intégration de Gradio avec MCP". That's straightforward. The tip section: ":::tip...:::" should remain in French, so "Gradio est une bibliothèque Python populaire..." makes sense. 
+
+Next, the prerequisites section. The command "pip install "gradio[mcp]"" stays the same because it's code. The term "LLM application" needs to be translated as "application LLM" since LLM is an abbreviation. But wait, the instructions say to keep terms like MCP, API, SDK, etc., as is. So "LLM" should stay, but since it's the first occurrence, maybe add a translation in parentheses? Wait, the user specified to keep certain terms and not translate them. The list includes "LLM" but it's not in the KEEP THESE TERMS list. Wait, checking the instructions again: the KEEP THESE TERMS list includes MCP, API, SDK, CLI, etc., but not LLM. However, in the example, they kept "LLMs" as is. So maybe "LLM" should stay as is. So "une application LLM" without translation.
+
+Moving to the code block example. The function "letter_counter" has a docstring and comments. The docstring needs to be translated. The comments inside the code, like "# Create a standard Gradio interface", should be translated. But the code itself (function names, parameters) stays the same. 
+
+The image URL and file paths should remain untouched. The term "MCP Hosts" is in quotes, so the translation would be "MCP Hosts (hôtes MCP)" since it's the first occurrence. Wait, the instructions say to keep the original term and provide the translation in parentheses the first time. So "Clients and Servers" becomes "Client et Serveurs" in the example. Here, "MCP Hosts" is mentioned once, so it should be "MCP Hosts (hôtes MCP)" the first time. But in the original text, it's written as "such as Cursor ( known as "MCP Hosts")". Wait, the original says "such as Cursor (known as "MCP Hosts")". So the translation would be "comme Cursor (connu sous le nom de « MCP Hosts »)". But according to the instructions, if the term is abbreviated, keep the original and provide the translation in parentheses. Here, "MCP Hosts" is a term, not an abbreviation. So maybe just keep it as is, but since it's a name, perhaps it's better to leave it untranslated. The user's example shows keeping "MCP Hosts" as is. So in the translation, it remains "comme Cursor (connu sous le nom de « MCP Hosts »)".
+
+The code block with the Python function: the docstring needs translation. The function's docstring is in English, so translate that into French. The comments inside the code, like "# Connect to weather API..." in the example, should be translated. So in the provided code, the comment "# Create a standard Gradio interface" becomes "# Crée une interface Gradio standard".
+
+The JSON code block in the troubleshooting section: the content is code, so leave it as is. The comment in the JSON is part of the code, but since it's a JSON configuration, it's probably not a comment. JSON doesn't support comments, so that's just part of the code. So the entire JSON block remains untouched.
+
+The YouTube tag: <Youtube id="3bSVKNKb_PY" /> stays the same, as per the instructions to keep HTML tags and URLs.
+
+Terms like "state-of-the-art" are translated to "État de l'art" as per the predefined translations. "Quick Quiz" becomes "Flash test". "Unit" becomes "Chapitre", etc.
+
+Now, checking for any slang or jokes. The original text doesn't seem to have any slang or jokes, so that's not an issue here.
+
+Handling the code blocks with plain texts: for example, the Python function has a docstring and comments. According to the instructions, if the code block contains many plain texts, provide the translation in a <code>&lt;details&gt;</code> tag. So the Python code block should have the translated version in a collapsible <code>&lt;details&gt;</code> above the original code. Wait, the example shows that the translated code is inside the <code>&lt;details&gt;</code> and the original code is below. So for the letter_counter function, the translated docstring and comments go into the <code>&lt;details&gt;</code> section, and the original code remains as is.
+
+Wait, the instruction says: "If the code block contains quite plain texts, you MUST provide the translation in <code>&lt;details&gt;</code> tag". So for code blocks with comments or docstrings (which are plain text), the translation is in a <code>&lt;details&gt;</code> tag above the original code block. So in the example provided, the translated code is inside the <code>&lt;details&gt;</code>, and the original code is outside. But in the user's example, the translation is added as a <code>&lt;details&gt;</code> above the original code block. So for the letter_counter code block, I need to create a <code>&lt;details&gt;</code> section with the translated comments and docstring, then show the original code block.
+
+Wait, looking at the user's example: the translation is added as a collapsible <code>&lt;details&gt;</code> above the original code block. So the structure is:
+
+<code>&lt;details&gt;</code>
+<summary>Translated summary</summary>
+```code with translated comments```
+
+```
+original code block
+```
+<code>&lt;/details&gt;</code>
+
+But in the example given by the user, the translated code is inside the <code>&lt;details&gt;</code> and the original code is outside. So for the letter_counter function, the translated version is inside <code>&lt;details&gt;</code>, and the original code is kept as is below.
+
+So applying that to the code block:
+
+Original code:
+
+```python
+import gradio as gr
+
+def letter_counter(word: str, letter: str) -> int:
+    """
+    Count the number of occurrences of a letter in a word or text.
+
+    Args:
+        word (str): The input text to search through
+        letter (str): The letter to search for
+
+    Returns:
+        int: The number of times the letter appears in the text
+    """
+    word = word.lower()
+    letter = letter.lower()
+    count = word.count(letter)
+    return count
+
+# Create a standard Gradio interface
+demo = gr.Interface(
+    fn=letter_counter,
+    inputs=["textbox", "textbox"],
+    outputs="number",
+    title="Letter Counter",
+    description="Enter text and a letter to count how many times the letter appears in the text."
+)
+
+# Launch both the Gradio web interface and the MCP server
+if __name__ == "__main__":
+    demo.launch(mcp_server=True)
+```
+
+The translation would have the docstring and comments translated inside the <code>&lt;details&gt;</code> tag, and the original code block remains. So the translated code inside <code>&lt;details&gt;</code> would have the French docstring and comments, while the original code block is kept as is.
+
+But wait, the user's instruction says: "Inside code blocks, translate the comments but leave the code as-is; If the code block contains quite plain texts, you MUST provide the translation in <code>&lt;details&gt;</code> tag". So for code blocks with comments or docstrings, translate them and present both the translated and original code. However, the example shows that the translated code is inside the <code>&lt;details&gt;</code> and the original is outside. So the structure is:
+
+<code>&lt;details&gt;</code>
+<summary>Translated summary</summary>
+```translated code```
+<code>&lt;/details&gt;</code>
+```original code```
+
+But in the user's example, the translated code is inside the <code>&lt;details&gt;</code> and the original is outside. However, in the actual translation, the code inside the <code>&lt;details&gt;</code> is the translated version, and the original code is kept as is. But in the example, the user shows both the translated and original code blocks. Wait, looking at the example:
+
+Original text:
+```python
+def get_weather(location: str) -> dict:
+    """Get the current weather for a specified location."""
+    # Connect to weather API and fetch data
+    return {
+        "temperature": 72,
+        "conditions": "Sunny",
+        "humidity": 45
+    }
+```
+
+Translation:
+
+<code>&lt;details&gt;</code>
+<summary>Obtiens la température pour un endroit précis.</summary>
+```
+def get_weather(location: str) -> dict:
+    """Obtiens la température pour un endroit précis."""
+    # Connect to weather API and fetch data
+    return {
+        "temperature": 72,
+        "conditions": "Sunny",
+        "humidity": 45
+    }
+```
+<code>&lt;/details&gt;</code>
+
+
+<code>&lt;details&gt;</code>
+```
+def get_weather(location: str) -> dict:
+    """Get the current weather for a specified location."""
+    # Connect to weather API and fetch data
+    return {
+        "temperature": 72,
+        "conditions": "Sunny",
+        "humidity": 45
+    }
+```
+
+Wait, that's redundant. The user's example shows that the translated code is inside the <code>&lt;details&gt;</code> and the original is outside. But that would mean the same code is present twice. That seems odd. Maybe the user made a mistake in the example. Alternatively, perhaps the <code>&lt;details&gt;</code> contains the translated code, and the original code is kept as is. But in the example, the code inside the <code>&lt;details&gt;</code> is the translated version, and the original code is kept below
+<code>&lt;/details&gt;</code>

@@ -1,0 +1,150 @@
+import Youtube from "@site/src/components/Youtube"
+import Astuce from "@site/src/components/Astuce"
+import Style from "@site/src/components/Style"
+
+# Clients MCP
+
+Maintenant que nous avons une compréhension de base du protocole de gestion de contexte, nous pouvons explorer le rôle essentiel des Clients MCP dans l'écosystème du protocole de gestion de contexte.
+
+Dans cette partie du Chapitre 1, nous allons explorer le rôle essentiel des Clients MCP dans l'écosystème du protocole de gestion de contexte.
+
+Dans cette section, vous allez :
+
+* Comprendre ce que sont les Clients MCP et leur rôle dans l'architecture MCP
+* Découvrir les responsabilités clés des Clients MCP
+* Explorer les principales implémentations de Clients MCP
+* Apprendre à utiliser l'implémentation du Client MCP de Hugging Face
+* Voir des exemples pratiques d'utilisation des Clients MCP
+
+## Comprendre les Clients MCP
+
+Les Clients MCP sont des composants cruciaux qui servent de pont entre les applications d'IA (Hosts) et les capacités externes fournies par les Serveurs MCP. Considérez le Host comme votre application principale (comme un assistant IA ou un IDE) et le Client comme un module spécialisé au sein de ce Host responsable de la gestion des communications MCP.
+
+## Clients d'interface utilisateur
+
+Commençons par explorer les clients d'interface utilisateur disponibles pour le MCP.
+
+### Clients d'interface de chat
+
+Anthropic's Claude Desktop se positionne comme l'un des Clients MCP les plus importants, fournissant une intégration avec divers Serveurs MCP.
+
+### Clients de développement interactifs
+
+L'implémentation du Client MCP de Cursor permet une assistance au codage alimentée par l'IA grâce à une intégration directe avec des capacités d'édition de code. Il prend en charge plusieurs connexions à des Serveurs MCP et fournit une invocation d'outils en temps réel pendant le codage, ce qui en fait un outil puissant pour les développeurs.
+
+Continue.dev est un autre exemple de client de développement interactif qui prend en charge MCP et se connecte à un serveur MCP depuis VS Code.
+
+## Configuration des Clients MCP
+
+Maintenant que nous avons couvert le cœur du protocole MCP, examinons comment configurer vos serveurs et clients MCP.
+
+Un déploiement efficace des serveurs et clients MCP nécessite une configuration appropriée.
+
+:::tip
+
+La spécification MCP évoluant encore, les méthodes de configuration sont susceptibles de changer. Nous nous concentrerons sur les meilleures pratiques actuelles de configuration.
+
+:::
+
+### Fichiers de configuration MCP
+
+Les Hosts MCP utilisent des fichiers de configuration pour gérer les connexions aux serveurs. Ces fichiers définissent quels serveurs sont disponibles et comment s'y connecter.
+
+Heureusement, les fichiers de configuration sont très simples, faciles à comprendre et cohérents entre les principaux Hosts MCP.
+
+#### Structure de `mcp.json`
+
+Le fichier de configuration standard pour MCP est nommé `mcp.json`. Voici la structure de base :
+
+```json
+{
+  "servers": [
+    {
+      "name": "Server Name",
+      "transport": {
+        "type": "stdio|sse",
+        // Configuration spécifique au transport
+      }
+    }
+  ]
+}
+```
+
+Dans cet exemple, nous avons un seul serveur avec un nom et un type de transport. Le type de transport est soit `stdio` soit `sse`.
+
+#### Configuration pour le transport stdio
+
+Pour les serveurs locaux utilisant le transport stdio, la configuration inclut la commande et les arguments pour lancer le processus serveur :
+
+```json
+{
+  "servers": [
+    {
+      "name": "File Explorer",
+      "transport": {
+        "type": "stdio",
+        "command": "python",
+        "args": ["/path/to/file_explorer_server.py"]
+      }
+    }
+  ]
+}
+```
+
+Ici, nous avons un serveur appelé "File Explorer" qui est un script local.
+
+#### Configuration pour le transport HTTP+SSE
+
+Pour les serveurs distants utilisant le transport HTTP+SSE, la configuration inclut l'URL du serveur :
+
+```json
+{
+  "servers": [
+    {
+      "name": "Remote API Server",
+      "transport": {
+        "type": "sse",
+        "url": "https://example.com/mcp-server"
+      }
+    }
+  ]
+}
+```
+
+#### Variables d'environnement dans la configuration
+
+Les variables d'environnement peuvent être passées aux processus serveur en utilisant le champ `env`. Voici comment y accéder dans votre code serveur :
+
+<hfoption id="python">
+
+En Python, nous utilisons le module `os` pour accéder aux variables d'environnement :
+
+```python
+import os
+
+# Accéder aux variables d'environnement
+github_token = os.environ.get("GITHUB_TOKEN")
+if not github_token:
+    raise ValueError("La variable d'environnement GITHUB_TOKEN est requise")
+
+# Utiliser le token dans votre code serveur
+def make_github_request():
+    headers = {"Authorization": f"Bearer {github_token}"}
+    # ... reste du code
+```
+
+</hfoption>
+<hfoption id="javascript">
+
+En JavaScript, nous utilisons l'objet `process.env` pour accéder aux variables d'environnement :
+
+```javascript
+// Accéder aux variables d'environnement
+const githubToken = process.env.GITHUB_TOKEN;
+if (!githubToken) {
+    throw new Error("La variable d'environnement GITHUB_TOKEN est requise");
+}
+
+// Utiliser le token dans votre code
+```
+</hfoption>

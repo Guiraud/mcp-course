@@ -1,0 +1,105 @@
+import Youtube from "@site/src/components/Youtube"
+import Astuce from "@site/src/components/Astuce"
+import Style from "@site/src/components/Style"
+
+# Tiny Agents : un agent MCP en 50 lignes de code
+
+Maintenant que nous avons construit des serveurs MCP dans Gradio, explorons plus en détail les clients MCP. Cette section s'appuie sur le projet expérimental [Tiny Agents](https://huggingface.co/blog/tiny-agents), qui démontre une manière ultra-simple de déployer des clients MCP pouvant se connecter à des services comme notre serveur d'analyse de sentiments Gradio.
+
+Dans cet exercice court, nous allons vous guider pour implémenter un client MCP en TypeScript (JS) capable de communiquer avec n'importe quel serveur MCP, y compris notre serveur d'analyse de sentiments basé sur Gradio construit dans la section précédente. Vous verrez comment MCP standardise la façon dont les agents interagissent avec les outils, simplifiant considérablement le développement d'IA agentique.
+
+![meme](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/tiny-agents/thumbnail.jpg)
+<figcaption>Crédit image : https://x.com/adamdotdev</figcaption>
+
+Nous vous montrerons comment connecter votre "tiny agent" à des serveurs MCP basés sur Gradio, lui permettant d'utiliser à la fois votre outil d'analyse de sentiments personnalisé et d'autres outils pré-construits.
+
+## Comment exécuter la démo complète
+
+Si vous avez NodeJS (avec `pnpm` ou `npm`), exécutez simplement ceci dans un terminal :
+
+```bash
+npx @huggingface/mcp-client
+```
+
+ou avec `pnpm` :
+
+```bash
+pnpx @huggingface/mcp-client
+```
+
+Cela installera le package dans un dossier temporaire puis exécutera sa commande.
+
+Vous verrez votre Agent simple se connecter à plusieurs serveurs MCP (locaux), charger leurs outils (similaire à comment il chargerait votre outil d'analyse de sentiments Gradio), puis vous inviter à une conversation.
+
+<video controls autoplay loop>
+  <source src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/tiny-agents/use-filesystem.mp4" type="video/mp4" />
+</video>
+
+Par défaut, notre exemple d'Agent se connecte à ces deux serveurs MCP :
+
+- Le serveur [système de fichiers "canonique"](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem), qui accède à votre Bureau,
+- Et le serveur [Playwright MCP](https://github.com/microsoft/playwright-mcp), qui sait utiliser un navigateur Chromium sandboxé.
+
+Vous pouvez facilement ajouter votre serveur d'analyse de sentiments Gradio à cette liste, comme nous le démontrerons plus tard.
+
+> [!NOTE]
+> Note : cela peut sembler contre-intuitif mais actuellement, tous les serveurs MCP dans tiny agents sont en réalité des processus locaux (bien que les serveurs distants arrivent bientôt). Cela n'inclut pas notre serveur Gradio tournant sur localhost:7860.
+
+Notre première entrée vidéo était :
+
+> write a haiku about the Hugging Face community and write it to a file named "hf.txt" on my Desktop
+
+Essayons maintenant cette requête impliquant du navigation Web :
+
+> do a Web Search for HF inference providers on Brave Search and open the first 3 results
+
+<video controls autoplay loop>
+  <source src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/tiny-agents/brave-search.mp4" type="video/mp4" />
+</video>
+
+Avec notre outil d'analyse de sentiments Gradio connecté, nous pourrions demander :
+> analyze the sentiment of this review: "I absolutely loved the product, it exceeded all my expectations!"
+
+### Modèle et fournisseur par défaut
+
+En termes de paire modèle/fournisseur, notre Agent utilise par défaut :
+- ["Qwen/Qwen2.5-72B-Instruct"](https://huggingface.co/Qwen/Qwen2.5-72B-Instruct)
+- exécuté sur [Nebius](https://huggingface.co/docs/inference-providers/providers/nebius)
+
+Tout est configurable via variables d'environnement ! Ici, nous montrons aussi comment ajouter notre serveur MCP Gradio :
+
+```ts
+const agent = new Agent({
+	provider: process.env.PROVIDER ?? "nebius",
+	model: process.env.MODEL_ID ?? "Qwen/Qwen2.5-72B-Instruct",
+	apiKey: process.env.HF_TOKEN,
+	servers: [
+		// Serveurs par défaut
+		{
+			command: "npx",
+			args: ["@modelcontextprotocol/servers", "filesystem"]
+		},
+		{
+			command: "npx",
+			args: ["playwright-mcp"]
+		},
+		// Notre serveur d'analyse de sentiments Gradio
+		{
+			command: "npx",
+			args: [
+				"mcp-remote",
+				"http://localhost:7860/gradio_api/mcp/sse"
+			]
+		}
+	],
+});
+```
+
+:::tip
+
+Nous nous connectons à notre serveur MCP basé sur Gradio via le package [`mcp-remote`](https://www.npmjs.com/package/mcp-remote).
+
+:::
+
+
+## La base de tout ça : le support natif des appels d'out

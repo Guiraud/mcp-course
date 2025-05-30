@@ -1,0 +1,95 @@
+import Youtube from "@site/src/components/Youtube"
+import Astuce from "@site/src/components/Astuce"
+import Style from "@site/src/components/Style"
+
+# Composants architecturaux de MCP
+
+Dans la section précédente, nous avons abordé les concepts clés et la terminologie de MCP. Maintenant, approfondissons les composants architecturaux qui constituent l'écosystème MCP.
+
+## Hôte, Client et Serveur
+
+Le protocole de gestion de contexte (MCP) repose sur une architecture client-serveur qui permet une communication structurée entre les Modèles d'IA et les systèmes externes.
+
+![Architecture MCP](https://huggingface.co/datasets/mcp-course/images/resolve/main/unit1/4.png)
+
+L'architecture MCP comprend trois composants principaux, chacun avec des rôles et responsabilités bien définis : Hôte, Client et Serveur. Nous les avons évoqués précédemment, mais examinons chaque composant plus en détail.
+
+### Hôte
+
+L'**Hôte** est l'application d'IA interface utilisateur avec laquelle les utilisateurs finaux interagissent directement.
+
+Exemples :
+- Applications de chat IA comme OpenAI ChatGPT ou Claude Desktop d'Anthropic
+- IDE enrichis d'IA comme Cursor, ou intégrations à des outils comme Continue.dev
+- Agents IA personnalisés et applications construites avec des bibliothèques comme LangChain ou smolagents
+
+Les responsabilités de l'Hôte incluent :
+- Gérer les interactions utilisateur et les permissions
+- Initier les connexions aux Serveurs MCP via les Clients MCP
+- Orchestrer le flux global entre requêtes utilisateur, traitement par LLM et outils externes
+- Restituer les résultats aux utilisateurs dans un format cohérent
+
+Dans la plupart des cas, les utilisateurs choisissent leur application hôte selon leurs besoins. Par exemple, un développeur peut choisir Cursor pour ses capacités d'édition de code, tandis que des experts métier utilisent des applications personnalisées construites avec smolagents.
+
+### Client
+
+Le **Client** est un composant de l'application Hôte qui gère la communication avec un Serveur MCP spécifique. Caractéristiques clés :
+
+- Chaque Client maintient une connexion 1:1 avec un seul Serveur
+- Gère les détails protocolaires de la communication MCP
+- Fait office d'intermédiaire entre la logique de l'Hôte et le Serveur externe
+
+### Serveur
+
+Le **Serveur** est un programme ou service externe qui expose des capacités aux Modèles d'IA via le protocole MCP. Les Serveurs :
+
+- Fournissent un accès à des outils externes, sources de données ou services spécifiques
+- Agissent comme des wrappers légers autour de fonctionnalités existantes
+- Peuvent s'exécuter localement (sur la même machine que l'Hôte) ou à distance (via réseau)
+- Exposent leurs capacités dans un format standardisé que les Clients peuvent découvrir et utiliser
+
+## Flux de communication
+
+Examinons comment ces composants interagissent dans un workflow MCP typique :
+
+:::tip
+
+Dans la prochaine section, nous explorerons le protocole de communication avec des exemples pratiques.
+
+:::
+
+1. **Interaction utilisateur** : L'utilisateur interagit avec l'application **Hôte**, exprimant une intention ou une requête.
+
+2. **Traitement par l'Hôte** : L'**Hôte** traite l'entrée utilisateur, potentiellement via un LLM pour comprendre la requête et déterminer quelles capacités externes sont nécessaires.
+
+3. **Connexion Client** : L'**Hôte** demande à son composant **Client** de se connecter au(x) Serveur(s) approprié(s).
+
+4. **Découverte des capacités** : Le **Client** interroge le **Serveur** pour découvrir ses capacités (Outils, Ressources, Prompts).
+
+5. **Invocation de capacités** : Sur la base des besoins utilisateur ou de la détermination du LLM, l'Hôte demande au **Client** d'invoquer des capacités spécifiques du **Serveur**.
+
+6. **Exécution Serveur** : Le **Serveur** exécute la fonctionnalité demandée et retourne les résultats au **Client**.
+
+7. **Intégration des résultats** : Le **Client** relaie les résultats à l'**Hôte**, qui les intègre au contexte du LLM ou les présente directement à l'utilisateur.
+
+Un avantage clé de cette architecture est sa modularité. Un seul **Hôte** peut se connecter à plusieurs **Serveurs** simultanément via différents **Clients**. De nouveaux **Serveurs** peuvent être ajoutés sans modifier les **Hôtes** existants. Les capacités peuvent être facilement composées entre différents **Serveurs**.
+
+:::tip
+
+Comme discuté précédemment, cette modularité transforme le problème d'intégration M×N traditionnel (M applications IA connectées à N outils/services) en un problème M+N plus gérable, où chaque Hôte et Serveur n'a besoin d'implémenter le standard MCP qu'une seule fois.
+
+:::
+
+L'architecture peut sembler simple, mais sa puissance réside dans la standardisation du protocole de communication et la séparation claire des responsabilités. Ce design permet un écosystème cohésif où les Modèles d'IA peuvent se connecter de manière transparente à un nombre croissant d'outils et sources de données externes.
+
+## Conclusion
+
+Ces modèles d'interaction sont guidés par plusieurs principes clés qui façonnent la conception et l'évolution de MCP. Le protocole met l'accent sur :
+- La **standardisation** via un protocole universel pour la connectivité IA
+- La **simplicité** avec un cœur protocolaire minimaliste mais extensible
+- La **sécurité** via l'approbation explicite des utilisateurs pour les opérations sensibles
+- La **découvrabilité** des capacités de manière dynamique
+- L'**extensibilité** via le versionnage et la négociation de capacités
+- L'**interopérabilité** entre implémentations et environnements différents
+
+Dans la prochaine section, nous explorerons le protoc

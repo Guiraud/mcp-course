@@ -1,0 +1,107 @@
+import Youtube from "@site/src/components/Youtube"
+import Astuce from "@site/src/components/Astuce"
+import Style from "@site/src/components/Style"
+
+<code>&lt;think&gt;</code>
+Okay, let's tackle this translation task. First, I need to make sure I follow all the instructions carefully. The user wants the Vietnamese translation while keeping the original formatting, which includes Markdown, MDX, or HTML. So I need to preserve the structure, headings, code blocks, and any other elements exactly as they are, only translating the text around them.
+
+The instructions mention that inside code blocks, I should translate the comments but leave the code as-is. Also, if the code block has plain texts, I need to provide the translation in a <code>&lt;details&gt;</code> tag. Let me check the examples given. For instance, in the Python function example, the docstring and comments are translated, but the code remains unchanged. The translated version is wrapped in a <code>&lt;details&gt;</code> tag above the original code block. So I need to apply that here.
+
+Next, inline code, URLs, and file paths shouldn't be translated. Terms like MCP, API, SDK, etc., are to be kept as-is. The predefined translations for terms like "Quick Quiz" to "Flash test" must be used. Also, the first time an abbreviated term appears, I should keep the original and add the translation in parentheses. But looking at the text, terms like MCP are already defined in the previous sections, so maybe I don't need to add translations here unless it's the first occurrence in this specific text.
+
+Looking at the provided text, the first mention of MCP is in the heading "Gradio as an MCP Client". Since the instructions say to keep terms like MCP as-is, I'll leave it. The same applies to other terms like API, SDK, etc.
+
+Now, let's go through the text section by section.
+
+The main heading is "# Gradio as an MCP Client". Translating that to Vietnamese would be "# Gradio với vai trò MCP Client". The term MCP is kept, and "Client" is also kept as per the instructions.
+
+The tip section: The <code>&lt;Tip&gt;</code> tag should remain, and the content inside translated. The original says Gradio is best suited for creating UI clients and MCP servers but can also be used as an MCP Client. The translation should reflect that, keeping "UI", "MCP Client", etc., as-is.
+
+Next, the installation command in bash: the code block here is just a command, so no comments or plain text. I leave it as-is, only translating the surrounding text. The Vietnamese sentence would be something like "Trước tiên, chúng ta cần cài đặt các thư viện `smolagents`, gradio và mcp-client nếu chưa có:"
+
+The Python code blocks: I need to check if there are comments or docstrings to translate. The first code block imports libraries. The comments are in the code, but there are no comments here. The next code block connects to the MCP server. The code itself doesn't have comments, so no translation needed inside the code block. The surrounding text explains connecting to the server, which I'll translate.
+
+Another code block creates the agent. Again, no comments, so the code remains. The following code block creates the Gradio interface. The lambda function has a docstring? Wait, looking at the code:
+
+fn=lambda message, history: str(agent.run(message)),
+type="messages",
+examples=["Prime factorization of 68"],
+title="Agent with MCP Tools",
+description="This is a simple agent that uses MCP tools to answer questions.",
+
+The title and description are parameters with strings that need translation. But wait, in the code block, these are part of the code. Since the instructions say to translate comments inside code blocks but leave the code as-is. However, the strings here are part of the code's parameters, not comments. So according to the rules, inline code shouldn't be translated. Therefore, the strings inside the code (like "Agent with MCP Tools", "This is a simple agent...") should remain in English. Wait, but the example provided by the user shows that in the code block, the docstring was translated. Let me check the example again.
+
+In the example, the original Python function has a docstring """Get the current weather...""", which is translated in the <code>&lt;details&gt;</code> tag. The code block inside the details has the translated docstring, but the original code block remains. So in this case, the strings in the code that are part of the user-facing text (like title, description) should be translated, but according to the instructions, inline code shouldn't be translated. Hmm, this is a bit confusing.
+
+Wait, the instructions say: "Inside code blocks, translate the comments but leave the code as-is; If the code block contains quite plain texts, you MUST provide the translation in <code>&lt;details&gt;</code> tag". So comments inside code blocks should be translated, but the code itself (including strings) should remain as-is. Therefore, in the Gradio code block, the title and description are part of the code's strings, not comments, so they should stay in English. Only the comments (lines starting with #) should be translated.
+
+Looking at the code:
+
+demo = gr.ChatInterface(
+    fn=lambda message, history: str(agent.run(message)),
+    type="messages",
+    examples=["Prime factorization of 68"],
+    title="Agent with MCP Tools",
+    description="This is a simple agent that uses MCP tools to answer questions.",
+    messages=[],
+)
+
+Here, "Prime factorization of 68" is an example. Since it's part of the code, it should remain as-is. The title and description are also code parameters, so they stay in English. Therefore, the code block remains unchanged, and the translation is provided in a <code>&lt;details&gt;</code> tag if there are plain texts. But in this case, the code block doesn't have plain texts; it's all code. So the code block is left as-is, and the surrounding Vietnamese text explains it.
+
+Wait, but the user's example shows that when the code block has plain texts (like the docstring and comments), the translation is in <code>&lt;details&gt;</code>. So in the current case, the code block has strings in the parameters, but those are part of the code. Therefore, they should not be translated. Only comments and docstrings inside the code are translated.
+
+Therefore, in the given code blocks, since there are no comments or docstrings, the code remains as-is. The surrounding Vietnamese text is translated.
+
+The iframe element is kept as-is, with the src, frameborder, width, height attributes unchanged.
+
+The "Complete Example" section has a Python code block. Let's check for comments. The code has a comment:
+
+## Try this working example on the hub:
+    ```json
+        # {"url": "https://abidlabs-mcp-tools.hf.space/gradio_api/mcp/sse"}
+    ```
+The comment starts with #, so it should be translated. The code block also has a docstring? Let me check. The code has:
+    ```Python
+try:
+    mcp_client = MCPClient(
+        ## Try this working example on the hub:
+        # {"url": "https://abidlabs-mcp-tools.hf.space/gradio_api/mcp/sse"}
+        # {"url": "http://localhost:7860/gradio_api/mcp/sse"}
+    )
+    tools = mcp_client.get_tools()
+
+    model = InferenceClientModel()
+    agent = CodeAgent(tools=[*tools], model=model)
+
+    demo = gr.ChatInterface(
+        fn=lambda message, history: str(agent.run(message)),
+        type="messages",
+        examples=["Prime factorization of 68"],
+        title="Agent with MCP Tools",
+        description="This is a simple agent that uses MCP tools to answer questions.",
+    )
+
+    demo.launch()
+finally:
+    mcp_client.disconnect()
+    ```
+In this code block, there's a comment line starting with ## and #. The ## line is actually part of the code (inside the MCPClient parameters), but in Python, ## is not a standard comment; # is. Wait, in Python, comments are only #. The line with ## is actually part of the code, but in the context of the code, it's inside a dictionary or parameters? Wait, looking at the code:
+
+```Python
+mcp_client = MCPClient(
+    ## Try this working example on the hub:
+    # {"url": "https://abidlabs-mcp-tools.hf.space/gradio_api/mcp/sse"}
+    {"url": "http://localhost:7860/gradio_api/mcp/sse"}
+)
+```
+Here, the ## line is a comment in the code, but in Python, multi-line parameters can't have comments like that. Wait, no, in Python, if you have parameters spread across lines, you can have comments inside using #. So the ## line is actually a comment, but in Python, comments start with #. So maybe that's a typo. However, regardless, according to the instructions, any comments (lines starting with #) should be translated. So the line starting with # should be translated, but the ## line is not a valid comment in Python, so perhaps it's a mistake. But according to the original text, it's written as:
+
+        ## Try this working example on the hub:
+        ```Python
+        {"url": "https://abidlabs-mcp-tools.hf.space/gradio_api/mcp/sse"}
+        ```
+The ## is likely a typo and should be #. But regardless, in the code block, any line starting with # is a comment and should be translated. So the line starting with # should have its comment translated. The ## line is not a valid comment, but perhaps it's intended as a comment, so I should treat it as such.
+
+Therefore, in the code block, the lines:
+
+        ## Try

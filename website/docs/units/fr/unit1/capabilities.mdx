@@ -1,0 +1,162 @@
+import Youtube from "@site/src/components/Youtube"
+import Astuce from "@site/src/components/Astuce"
+import Style from "@site/src/components/Style"
+
+# Comprendre les capacités de MCP
+
+Les Serveurs MCP exposent diverses capacités aux Clients via le protocole de communication. Ces capacités se divisent en quatre catégories principales, chacune avec des caractéristiques et des cas d'utilisation distincts. Explorons ces primitives fondamentales qui constituent la base de la fonctionnalité de MCP.
+
+:::tip
+
+Dans cette section, nous montrerons des exemples sous forme de fonctions indépendantes du framework dans chaque langage. Cela permet de se concentrer sur les concepts et leur interaction, plutôt que sur la complexité d'un framework spécifique.
+
+Dans les prochains chapitres, nous montrerons comment ces concepts sont implémentés dans le code spécifique à MCP.
+
+:::
+
+## Outils
+
+Les Outils sont des fonctions ou actions exécutables que le Modèle d'IA peut invoquer via le protocole MCP.
+
+- **Contrôle** : Les outils sont généralement **contrôlés par le modèle**, ce qui signifie que le Modèle d'IA (LLM) décide quand les appeler en fonction de la requête utilisateur et du contexte.
+- **Sécurité** : En raison de leur capacité à effectuer des actions avec effets secondaires, l'exécution des outils peut être dangereuse. Ils nécessitent donc généralement une approbation explicite de l'utilisateur.
+- **Cas d'utilisation** : Envoi de messages, création de tickets, interrogation d'API, calculs.
+
+**Exemple** : Un outil météo qui récupère les données météorologiques actuelles pour un lieu donné :
+
+<hfoptions id="tool-example">
+<hfoption id="python">
+
+<details>
+<summary>Obtiens la météo actuelle pour un lieu spécifié.</summary>
+```python
+def get_weather(location: str) -> dict:
+    """Obtiens la météo actuelle pour un lieu spécifié."""
+    # Connexion à l'API météo et récupération des données
+    return {
+        "temperature": 72,
+        "conditions": "Sunny",
+        "humidity": 45
+    }
+```
+</details>
+
+```python
+def get_weather(location: str) -> dict:
+    """Get the current weather for a specified location."""
+    # Connect to weather API and fetch data
+    return {
+        "temperature": 72,
+        "conditions": "Sunny",
+        "humidity": 45
+    }
+```
+
+</hfoption>
+<hfoption id="javascript">
+
+<details>
+<summary>Obtiens la météo actuelle pour un lieu spécifié.</summary>
+```javascript
+function getWeather(location) {
+    // Connexion à l'API météo et récupération des données
+    return {
+        temperature: 72,
+        conditions: 'Sunny',
+        humidity: 45
+    };
+}
+```
+</details>
+
+```javascript
+function getWeather(location) {
+    // Connect to weather API and fetch data
+    return {
+        temperature: 72,
+        conditions: 'Sunny',
+        humidity: 45
+    };
+}
+```
+
+</hfoption>
+</hfoptions>
+
+## Ressources
+
+Les Ressources fournissent un accès en lecture seule aux sources de données, permettant au Modèle d'IA de récupérer du contexte sans exécuter de logique complexe.
+
+- **Contrôle** : Les ressources sont **contrôlées par l'application**, ce qui signifie que l'application hôte décide généralement quand y accéder.
+- **Nature** : Conçues pour la récupération de données avec un calcul minimal, similaires aux endpoints GET dans les API REST.
+- **Sécurité** : Étant en lecture seule, elles présentent généralement moins de risques que les Outils.
+- **Cas d'utilisation** : Accès aux fichiers, récupération d'enregistrements de base de données, lecture de configurations.
+
+**Exemple** : Une ressource permettant d'accéder au contenu d'un fichier :
+
+<hfoptions id="resource-example">
+<hfoption id="python">
+
+<details>
+<summary>Lit le contenu d'un fichier à l'emplacement spécifié.</summary>
+```python
+def read_file(file_path: str) -> str:
+    """Lit le contenu d'un fichier à l'emplacement spécifié."""
+    with open(file_path, 'r') as f:
+        return f.read()
+```
+</details>
+
+```python
+def read_file(file_path: str) -> str:
+    """Read the contents of a file at the specified path."""
+    with open(file_path, 'r') as f:
+        return f.read()
+```
+
+</hfoption>
+<hfoption id="javascript">
+
+<details>
+<summary>Lit le contenu d'un fichier à l'emplacement spécifié.</summary>
+```javascript
+function readFile(filePath) {
+    // Utilisation de fs.readFile pour lire le contenu du fichier
+    const fs = require('fs');
+    return new Promise((resolve, reject) => {
+        fs.readFile(filePath, 'utf8', (err, data) => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve(data);
+        });
+    });
+}
+```
+</details>
+
+```javascript
+function readFile(filePath) {
+    // Using fs.readFile to read file contents
+    const fs = require('fs');
+    return new Promise((resolve, reject) => {
+        fs.readFile(filePath, 'utf8', (err, data) => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve(data);
+        });
+    });
+}
+```
+
+</hfoption>
+</hfoptions>
+
+## Prompts
+
+Les Prompts sont des modèles ou workflows prédéfinis qui guident l'interaction entre l'utilisateur, le Modèle d'IA et les capacités du Serveur.
+
+- **Contrôle** : Les Prompts sont **contrôlés par l'

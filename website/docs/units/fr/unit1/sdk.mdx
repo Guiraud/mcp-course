@@ -1,0 +1,153 @@
+import Youtube from "@site/src/components/Youtube"
+import Astuce from "@site/src/components/Astuce"
+import Style from "@site/src/components/Style"
+
+<code>&lt;think&gt;</code>
+Okay, let's tackle this translation. First, I need to make sure I follow all the instructions carefully. The main goal is to translate the text into French while keeping the original formatting, which includes Markdown, MDX, or HTML elements. 
+
+Starting with the headers. The main title is "# MCP SDK". Since MCP is an acronym and should remain untranslated, I'll keep that as is. The translation would be "# SDK MCP". 
+
+Next, the first paragraph: "The Model Context Protocol provides official SDKs..." The term Model Context Protocol is translated as "protocole de gestion de contexte" according to the predefined terms. So the sentence becomes "Le protocole de gestion de contexte (Model Context Protocol, MCP) fournit des SDK officiels pour JavaScript, Python et d'autres langages." I need to make sure that the first occurrence of MCP has the translation in parentheses.
+
+Looking at the code blocks. The Python code has comments that need translating. For example, the comment """Get the current weather for a specified location.""" should be translated. The code block also has a function with a docstring. The translated docstring would be """Obtiens la météo actuelle pour un lieu spécifié.""". The code itself remains unchanged except for the comments. Since the code block has plain text in comments, I need to wrap the translation in a <code>&lt;details&gt;</code> tag. Wait, the example shows that the <code>&lt;details&gt;</code> should be above the original code block. So I'll create a collapsible section with the French translation and then show the original code block. But in the example provided, the translated code is inside the <code>&lt;details&gt;</code> and the original is outside. Wait, no, looking back, the example shows that the translation is inside the <code>&lt;details&gt;</code> and the original code is kept as is. Wait, the example given by the user is a bit confusing. Let me check again.
+
+In the example, the original code block is translated, and the <code>&lt;details&gt;</code> is added above the original code block. The translated code is inside the <code>&lt;details&gt;</code>, and the original code is kept below. Wait, no. The example shows that the translation is inside the <code>&lt;details&gt;</code> and the original code is kept as is. Wait, the user's example shows that the translation is presented in the <code>&lt;details&gt;</code> tag, and the original code is kept below. But in the actual answer, the user wants the translated code in the <code>&lt;details&gt;</code> and the original code as is. Wait, the example given by the user has the translation inside the <code>&lt;details&gt;</code> tag, and the original code is kept as is. So for the Python code block, I need to create a <code>&lt;details&gt;</code> section with the French translation of the comments and docstrings, then present the original code block as is. But wait, the user's instruction says: "Inside code blocks, translate the comments but leave the code as-is; If the code block contains quite plain texts, you MUST provide the translation in <code>&lt;details&gt;</code> tag". So if the code block has comments or plain text, translate them and present in a <code>&lt;details&gt;</code> tag. 
+
+So for the Python code:
+
+Original:
+    ```python
+    from mcp.server.fastmcp import FastMCP
+
+    # Create an MCP server
+    mcp = FastMCP("Weather Service")
+
+
+    @mcp.tool()
+    def get_weather(location: str) -> str:
+        """Get the current weather for a specified location."""
+        return f"Weather in {location}: Sunny, 72°F"
+
+
+    @mcp.resource("weather://{location}")
+    def weather_resource(location: str) -> str:
+        """Provide weather data as a resource."""
+        return f"Weather data for {location}: Sunny, 72°F"
+
+
+    @mcp.prompt()
+    def weather_report(location: str) -> str:
+        """Create a weather report prompt."""
+        return f"""You are a weather reporter. Weather report for {location}?"""
+
+
+    # Run the server
+    if __name__ == "__main__":
+        mcp.run()
+    ```
+
+The comments and docstrings need translation. So the translated code would have the French comments and docstrings. Then, according to the instruction, if the code block contains plain texts (like comments), the translation should be provided in a <code>&lt;details&gt;</code> tag. So the structure would be:
+
+<code>&lt;details&gt;</code>
+<summary>French summary</summary>
+```python
+... translated code ...
+```
+<code>&lt;/details&gt;</code>
+```
+... original code ...
+```
+
+Wait, but the example provided by the user shows that the translated code is inside the <code>&lt;details&gt;</code> and the original code is kept as is. Wait, looking at the user's example:
+
+Original text:
+    ```python
+    def get_weather(location: str) -> dict:
+        """Get the current weather for a specified location."""
+        # Connect to weather API and fetch data
+        return {
+            "temperature": 72,
+            "conditions": "Sunny",
+            "humidity": 45
+        }
+    ```
+
+Translation:
+<code>&lt;details&gt;</code>
+    <summary>Obtiens la température pour un endroit précis.</summary>
+    ```
+    def get_weather(location: str) -> dict:
+        """Obtiens la température pour un endroit précis."""
+        # Connect to weather API and fetch data
+        return {
+            "temperature": 72,
+            "conditions": "Sunny",
+            "humidity": 45
+        }
+    ```
+<code>&lt;/details&gt;</code>
+```
+def get_weather(location: str) -> dict:
+    """Get the current weather for a specified location."""
+    # Connect to weather API and fetch data
+    return {
+        "temperature": 72,
+        "conditions": "Sunny",
+        "humidity": 45
+    }
+```
+
+Wait, but in the user's example, the translation is inside the <code>&lt;details&gt;</code> tag, and the original code is kept below. But that seems redundant. However, according to the instruction, if the code block contains plain texts, the translation must be provided in a <code>&lt;details&gt;</code> tag. So perhaps the correct approach is to have the translated code inside the <code>&lt;details&gt;</code> and the original code as is. But that would duplicate the code. However, the user's example shows that. So I need to follow that structure.
+
+Therefore, for the Python code block, I need to create a <code>&lt;details&gt;</code> section with the translated comments and docstrings, then present the original code block as is. But wait, the user's example shows that the translated code is inside the <code>&lt;details&gt;</code> and the original code is outside. So the translated code is in the collapsible section, and the original code is kept as is. But that would mean the code is duplicated. However, the user's instruction says to keep the original formatting, so perhaps the code blocks are left as is, but with the translated comments in the <code>&lt;details&gt;</code> tag. Wait, maybe I'm misunderstanding. Let me re-read the instruction.
+
+The instruction says: "Inside code blocks, translate the comments but leave the code as-is; If the code block contains quite plain texts, you MUST provide the translation in <code>&lt;details&gt;</code> tag". So if the code block has comments (which are plain text), translate them and present in a <code>&lt;details&gt;</code> tag. The code itself (non-comments) remains as is. Wait, but in the example, the user translates the docstring and the comment, and presents the translated code in the <code>&lt;details&gt;</code>, then the original code is kept. But that's perhaps because the code block contains quite plain texts. So in this case, the code block has comments and docstrings (plain text), so the translation is provided in a <code>&lt;details&gt;</code> tag, and the original code is kept. But that would mean the code is duplicated. However, the user's example shows that. So I need to follow that structure.
+
+Therefore, for the Python code block, I need to create a <code>&lt;details&gt;</code> section with the translated comments and docstrings, then present the original code block as is. So the translated code inside <code>&lt;details&gt;</code> and the original code outside. But that's a bit confusing. Let me check the example again.
+
+In the user's example, the translation is inside the <code>&lt;details&gt;</code> tag, and the original code is outside. So the translated code is in the collapsible section, and the original code is shown below. But that's redundant. However, the user's instruction says to do that. So I have to follow that.
+
+So for the Python code block:
+
+<code>&lt;details&gt;</code>
+    <summary>French summary</summary>
+    Translated code with French comments and docstrings.
+<code>&lt;/details&gt;</code>
+
+Original code block as is.
+
+But in the user's example, the translated code is inside the <code>&lt;details&gt;</code> and the original is outside. So the code is duplicated. Therefore, I need to do the same here.
+
+So for the Python code:
+
+<code>&lt;details&gt;</code>
+<summary>Crée un serveur MCP avec des outils, ressources et invites.</summary>
+```python
+from mcp.server.fastmcp import FastMCP
+
+# Créer un serveur MCP
+mcp = FastMCP("Weather Service")
+
+
+@mcp.tool()
+def get_weather(location: str) -> str:
+    """Obtiens la météo actuelle pour un lieu spécifié."""
+    return f"Weather in {location}: Sunny, 72°F"
+
+
+@mcp.resource("weather://{location}")
+def weather_resource(location: str) -> str:
+    """Fournit les données météo comme ressource."""
+    return f"Weather data for {location}: Sunny, 72°F"
+
+
+@mcp.prompt()
+def weather_report(location: str) -> str:
+    """Crée une invite de rapport météo."""
+    return f"""You are a weather reporter. Weather report for {location}?"""
+
+
+# Exécuter le serveur
+if __name__ == "__main__":
+```
+<code>&lt;/details&gt;</code>

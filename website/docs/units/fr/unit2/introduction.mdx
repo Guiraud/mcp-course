@@ -1,0 +1,68 @@
+import Youtube from "@site/src/components/Youtube"
+import Astuce from "@site/src/components/Astuce"
+import Style from "@site/src/components/Style"
+
+# Construire une application MCP de bout en bout
+
+Bienvenue dans le Chapitre 2 du Cours MCP !
+
+Dans ce chapitre, nous allons construire une application MCP complète à partir de zéro, en nous concentrant sur la création d'un serveur avec Gradio et sa connexion avec plusieurs clients. Cette approche pratique vous donnera une expérience concrète de l'écosystème MCP.
+
+<Astuce>
+
+Dans ce chapitre, nous allons construire un serveur MCP simple et un client en utilisant Gradio et le hub HuggingFace. Dans le prochain chapitre, nous créerons un serveur plus complexe pour un cas d'utilisation réel.
+
+</Astuce>
+
+## Ce que vous allez apprendre
+
+Dans ce chapitre, vous allez :
+
+- Créer un serveur MCP en utilisant le support MCP intégré à Gradio
+- Développer un outil d'analyse de sentiments utilisable par les Modèles AI
+- Vous connecter au serveur avec différentes implémentations client :
+  - Un client basé sur HuggingFace.js
+  - Un client SmolAgents pour Python
+- Déployer votre serveur MCP sur Hugging Face Spaces
+- Tester et déboguer le système complet
+
+À la fin de ce chapitre, vous disposerez d'une application MCP fonctionnelle démontrant la puissance et la flexibilité du protocole.
+
+## Prérequis
+
+Avant de commencer ce chapitre, assurez-vous de :
+
+- Avoir terminé le Chapitre 1 ou de comprendre les concepts de base du MCP
+- Être à l'aise avec Python et JavaScript/TypeScript
+- Avoir une compréhension basique des API et de l'architecture client-serveur
+- Disposer d'un environnement de développement avec :
+  - Python 3.10+
+  - Node.js 18+
+  - Un compte Hugging Face (pour le déploiement)
+
+## Notre projet complet
+
+Nous allons construire une application d'analyse de sentiments composée de trois parties principales : le serveur, le client et le déploiement.
+
+![sentiment analysis application](https://huggingface.co/datasets/mcp-course/images/resolve/main/unit2/1.png)
+
+### Côté serveur
+
+- Utilise Gradio pour créer une interface web et un serveur MCP via `gr.Interface`
+- Implémente un outil d'analyse de sentiments avec TextBlob
+- Expose l'outil via les protocoles HTTP et MCP
+
+### Côté client
+
+- Implémente un client HuggingFace.js
+- Ou crée un client Python smolagents
+- Montre comment utiliser le même serveur avec différentes implémentations client
+
+### Déploiement
+
+- Déploie le serveur sur Hugging Face Spaces
+- Configure les clients pour fonctionner avec le serveur déployé
+
+## Commençons !
+
+Êtes-vous prêt à construire votre première application MCP complète ? Commençons par la configuration de l'environnement de développement et la création de notre serveur MCP Gradio.

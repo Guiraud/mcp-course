@@ -1,0 +1,95 @@
+import Youtube from "@site/src/components/Youtube"
+import Astuce from "@site/src/components/Astuce"
+import Style from "@site/src/components/Style"
+
+# Création du serveur MCP Gradio
+
+Dans cette section, nous allons créer notre serveur MCP d'analyse de sentiments en utilisant Gradio. Ce serveur exposera un outil d'analyse de sentiments utilisable à la fois par des utilisateurs humains via une interface web et par des Modèles via le protocole MCP.
+
+## Introduction à l'intégration MCP de Gradio
+
+Gradio offre un moyen simple de créer des serveurs MCP en convertissant automatiquement vos fonctions Python en outils MCP. Lorsque vous définissez `mcp_server=True` dans `launch()`, Gradio :
+
+1. Convertit automatiquement vos fonctions en outils MCP
+2. Mappe les composants d'entrée aux schémas d'arguments des outils
+3. Détermine les formats de réponse à partir des composants de sortie
+4. Configure JSON-RPC over HTTP+SSE pour la communication client-serveur
+5. Crée à la fois une interface web et un endpoint de serveur MCP
+
+## Configuration du projet
+
+Commençons par créer un nouveau répertoire pour notre projet et installer les dépendances nécessaires :
+
+```bash
+mkdir mcp-sentiment
+cd mcp-sentiment
+python -m venv venv
+source venv/bin/activate  # Sur Windows : venv\Scripts\activate
+pip install "gradio[mcp]" textblob
+```
+
+## Création du serveur
+
+> Hugging Face Spaces nécessite un fichier app.py pour construire l'espace. Le nom du fichier Python doit donc être app.py
+
+Créez un nouveau fichier appelé `app.py` avec le code suivant :
+
+<details>
+<summary>Analyse le sentiment d'un texte en utilisant TextBlob</summary>
+```python
+import gradio as gr
+from textblob import TextBlob
+
+def sentiment_analysis(text: str) -> dict:
+    """
+    Analyse le sentiment du texte donné.
+
+    Args:
+        text (str): Le texte à analyser
+
+    Returns:
+        dict: Un dictionnaire contenant la polarité, la subjectivité et l'évaluation
+    """
+    blob = TextBlob(text)
+    sentiment = blob.sentiment
+    
+    return {
+        "polarity": round(sentiment.polarity, 2),  # De -1 (négatif) à 1 (positif)
+        "subjectivity": round(sentiment.subjectivity, 2),  # De 0 (objectif) à 1 (subjectif)
+        "assessment": "positive" if sentiment.polarity > 0 else "negative" if sentiment.polarity < 0 else "neutral"
+    }
+
+# Crée l'interface Gradio
+demo = gr.Interface(
+    fn=sentiment_analysis,
+    inputs=gr.Textbox(placeholder="Entrez le texte à analyser..."),
+    outputs=gr.JSON(),
+    title="Analyse de sentiment textuel",
+    description="Analyse le sentiment d'un texte en utilisant TextBlob"
+)
+
+# Lance l'interface et le serveur MCP
+if __name__ == "__main__":
+    demo.launch(mcp_server=True)
+```
+</details>
+```python
+import gradio as gr
+from textblob import TextBlob
+
+def sentiment_analysis(text: str) -> dict:
+    """
+    Analyze the sentiment of the given text.
+
+    Args:
+        text (str): The text to analyze
+
+    Returns:
+        dict: A dictionary containing polarity, subjectivity, and assessment
+    """
+    blob = TextBlob(text)
+    sentiment = blob.sentiment
+    
+    return {
+        "polarity": round(sentiment.polarity, 2),  # -1 (negative) to 1 (positive)
+        "subjectivity": round(sentiment.subjectivity, 2),  # 0 (objective) to 1 (sub
